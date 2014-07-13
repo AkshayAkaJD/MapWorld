@@ -20,17 +20,17 @@ geo.long = 18.913371603574;
 
 io.on('connection', function (socket) {
     console.log('a user connected');
-    
+    setTimeout(function () {
+        
+        io.emit('geojson', geo);
+    }, 3000);
+
     
     socket.on('chat message', function (msg) {
     });
 });
 
 
-setTimeout(function () {
-    
-    io.emit('geojson', geo);
-}, 3000);
 
 
 
