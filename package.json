@@ -1,0 +1,15 @@
+{
+  "name": "MapWorld",
+  "version": "0.0.0",
+  "description": "MapWorld",
+  "main": "app.js",
+  "author": {
+    "name": "Akshay",
+    "email": ""
+  },
+  "dependencies": {
+    "express": "3.4.4",
+    "jade": "*",
+    "stylus": "*"
+  }
+}
