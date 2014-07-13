@@ -79,7 +79,7 @@
 
 
 
-
+        socket.emit('chat-message');
         socket.on('geojson', function (msg) {
 
             L.mapbox.featureLayer(mmap(geo)).addTo(tmap);
