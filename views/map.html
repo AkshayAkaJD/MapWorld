@@ -1,0 +1,91 @@
+﻿<!doctype html>
+<html>
+<head>
+    <title>Twitter Map</title>
+
+    <script src='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox.js/v1.6.4/mapbox.css' rel='stylesheet' />
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id='map'></div>
+
+
+
+
+
+
+
+
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    <script>
+
+
+        var tmap = L.mapbox.map('map', 'examples.map-i86nkdio')
+
+        var socket = io();
+
+        var geo = new Object();
+        geo.title = 'Akshay J D';
+        geo.description = 'Just Testing Dynamic Mapping';
+        geo.feature = 'mobilephone';
+        geo.color = "#FF0000";
+        geo.lat = -77.03221142292;
+        geo.long = 38.913371603574;
+        var coordinates = function (geo) {
+            var coordi = [geo.lat, geo.long];
+
+            return coordi;
+        }
+
+
+        var mmap = function (geo) {
+            var feat = {
+
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+
+                    coordinates: coordinates(geo)
+                },
+                properties: {
+                    title: geo.title,
+                    description: geo.description,
+
+                    'marker-size': 'large',
+                    'marker-color': geo.color,
+                    'marker-symbol': geo.feature
+                }
+            }
+
+            return feat;
+        }
+
+
+
+
+        socket.on('geojson', function (msg) {
+
+            L.mapbox.featureLayer(mmap(geo)).addTo(tmap);
+
+        });
+
+    </script>
+</body>
+
+</html>

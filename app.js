@@ -3,25 +3,28 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
 app.get('/', function (req, res) {
-    res.sendfile('views/sock.html');
+    res.sendfile('views/map.html');
 });
+
 
 io.on('connection', function (socket) {
     console.log('a user connected');
-});
-
-io.on('connection', function (socket) {
-    console.log('a user connected');
+    
+    
     socket.on('chat message', function (msg) {
-        io.emit('chat message', msg+"Test");
+        io.emit('chat message', msg + "Test");
     });
-
+    
+    io.emit('geojson', "{ type: 'Feature', geometry: type: 'Point',coordinates: [-77.03221142292,38.913371603574 ]},properties: {title: 'Peregrine Espresso',description: '1718 14th St NW, Washington, DC','marker-size': 'large','marker-color': '#FF0000','marker-symbol': 'mobilephone'}}")
 });
+
+
 
 
 http.listen(process.env.PORT || 3000, function () {
     console.log('listening on *:3000');
 });
+
 
 
 

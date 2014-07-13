@@ -49,6 +49,7 @@
     <Folder Include="views\" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="views\map.html" />
     <Content Include="views\sock.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config" />
