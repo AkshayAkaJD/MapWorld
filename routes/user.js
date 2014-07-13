@@ -8,5 +8,5 @@ exports.list = function(req, res){
 };
 
 exports.sock = function (req, res) {
-    res.send("hello");
+    res.sendfile('views/sock.html', { title : 'sock'});
 };
