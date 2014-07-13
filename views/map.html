@@ -43,8 +43,9 @@
         var geo = new Object();
         geo.title = 'Akshay J D';
         geo.description = 'Just Testing Dynamic Mapping';
-        geo.feature = 'mobilephone';
+        geo.feature = 'post';
         geo.color = "#FF0000";
+        geo.size = 'large';
         geo.lat = -77.03221142292;
         geo.long = 38.913371603574;
         var coordinates = function (geo) {
@@ -67,7 +68,7 @@
                     title: geo.title,
                     description: geo.description,
 
-                    'marker-size': 'large',
+                    'marker-size': geo.size,
                     'marker-color': geo.color,
                     'marker-symbol': geo.feature
                 }
@@ -82,6 +83,7 @@
         socket.on('geojson', function (msg) {
 
             L.mapbox.featureLayer(mmap(geo)).addTo(tmap);
+            L.mapbox.featureLayer(mmap(msg)).addTo(tmap);
 
         });
 

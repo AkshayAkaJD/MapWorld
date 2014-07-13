@@ -7,6 +7,17 @@ app.get('/', function (req, res) {
 });
 
 
+var geo = new Object();
+geo.title = 'Tanku SS';
+geo.description = 'Just Testing Dynamic Mapping';
+geo.feature = 'post';
+geo.size = "small";
+geo.color = "#FF0000";
+geo.lat = -97.03221142292;
+geo.long = 18.913371603574;
+
+
+
 io.on('connection', function (socket) {
     console.log('a user connected');
     
@@ -15,7 +26,7 @@ io.on('connection', function (socket) {
         io.emit('chat message', msg + "Test");
     });
     
-    io.emit('geojson', "{ type: 'Feature', geometry: type: 'Point',coordinates: [-77.03221142292,38.913371603574 ]},properties: {title: 'Peregrine Espresso',description: '1718 14th St NW, Washington, DC','marker-size': 'large','marker-color': '#FF0000','marker-symbol': 'mobilephone'}}")
+    io.emit('geojson', geo);
 });
 
 
